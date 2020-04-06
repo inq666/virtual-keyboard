@@ -188,9 +188,11 @@ class KeyBoard {
       return;
     }
     const key = document.querySelector(`.${e.code}`);
+
     if (key === null) {
       return;
     }
+
     key.classList.remove('activeKeyBoard');
     if (e.key === 'Shift') {
       if (this.capsMode === true) {
