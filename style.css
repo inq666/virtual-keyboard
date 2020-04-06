@@ -131,7 +131,7 @@ button:active {
 .ControlLeft,
 .ControlRight,
 .BackSlash,
-.Del {
+.Delete {
   width: 70px;
 
   background-color: rgb(223, 223, 223);
