@@ -154,7 +154,7 @@ class KeyBoard {
     setTimeout(() => {
       target.classList.remove('active');
     }, 500);
-    const text = e.target.closest('.key').querySelector('.on').textContent;
+    const text = e.target.closest('.key').querySelector('.activeKeys').querySelector('.on').textContent;
     if (text.length > 1) {
       return;
     }
@@ -167,7 +167,7 @@ class KeyBoard {
       this.changeCase();
       return;
     }
-    if (e.code === 'ShiftLeft' || e.code === 'ShiftLeft') {
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
       this.caseUpper();
     }
     this.checkKey(e.code);
@@ -176,7 +176,7 @@ class KeyBoard {
       return;
     }
     key.classList.add('activeKeyBoard');
-    const text = document.querySelector(`.${e.code}`).querySelector('.on').textContent;
+    const text = document.querySelector(`.${e.code}`).querySelector('.activeKeys').querySelector('.on').textContent;
     if (text.length > 1) {
       return;
     }
