@@ -1,0 +1,32 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "htmlhint": "^0.11.0"
+  },
+  "devDependencies": {
+    "csscomb": "^4.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "stylelint": "^13.1.0",
+    "stylelint-config-htmlacademy": "^0.1.4",
+    "stylelint-config-standard": "^20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inq666/virtual-keyboard.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/inq666/virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/inq666/virtual-keyboard#readme"
+}
