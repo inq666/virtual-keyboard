@@ -1,25 +1,23 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   padding-top: 20px;
   padding-left: 478px;
 
   font-size: 18px;
-  font-family: Roboto,Segoe UI,"Tahoma, sans-serif";
+  font-family: "Segoe UI", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
 
-
-#wrapper {
+.wrapper {
   width: 945px;
 
   background-color: rgb(255, 136, 0);
   border-radius: 10px;
   box-shadow: 0 -150px 70px -120px teal inset,
-  0 -220px 70px -120px yellowgreen inset,
-  0 -280px 70px -120px gold inset;
+    0 -220px 70px -120px yellowgreen inset,
+    0 -280px 70px -120px gold inset;
 
   animation: background 7s infinite alternate;
 }
@@ -28,12 +26,12 @@ body {
   50% {
     background: darkviolet;
     box-shadow: 0 -140px 70px -120px mediumorchid inset,
-    0 -210px 70px -120px teal inset,
-    0 -280px 70px -120px plum inset;
+      0 -210px 70px -120px teal inset,
+      0 -280px 70px -120px plum inset;
   }
 }
 
-.clearFix:after {
+.clearFix::after {
   content: " ";
 
   display: table;
@@ -125,53 +123,53 @@ button:active {
   background-color: rgb(143, 143, 143);
 }
 
-.Tab,
-.AltLeft,
-.AltRight,
-.ControlLeft,
-.ControlRight,
-.BackSlash,
-.Delete {
+.tab,
+.altLeft,
+.altRight,
+.controlLeft,
+.controlRight,
+.backSlash,
+.delete {
   width: 70px;
 
   background-color: rgb(223, 223, 223);
 }
 
-.Backquote,
-.MetaLeft,
-.ArrowLeft,
-.ArrowDown,
-.ArrowUp,
-.ArrowRight {
+.backquote,
+.metaLeft,
+.arrowLeft,
+.arrowDown,
+.arrowUp,
+.arrowRight {
   background-color: rgb(223, 223, 223);
 }
 
-.Space {
+.space {
   width: 370px;
 
   background-color: rgb(223, 223, 223);
 }
 
-.CapsLock {
+.capsLock {
   width: 100px;
 
   background-color: rgb(223, 223, 223);
 }
 
-.ShiftLeft,
-.ShiftRight {
+.shiftLeft,
+.shiftRight {
   width: 130px;
 
   background-color: rgb(223, 223, 223);
 }
 
-.Enter {
+.enter {
   width: 160px;
 
   background-color: rgb(223, 223, 223);
 }
 
-.Backspace {
+.backspace {
   width: 150px;
 
   background-color: rgb(223, 223, 223);
@@ -194,6 +192,7 @@ button:active {
   0% {
     border-radius: 5%;
   }
+
   100% {
     background-color: rgb(164, 164, 255);
     border-radius: 40%;

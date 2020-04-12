@@ -12,8 +12,7 @@ class KeyBoard {
 
   init() {
     this.wrapper = document.createElement('div');
-    this.wrapper.classList.add('clearFix');
-    this.wrapper.id = 'wrapper';
+    this.wrapper.classList.add('wrapper', 'clearFix');
     document.body.prepend(this.wrapper);
 
     this.form = document.createElement('form');
@@ -31,11 +30,11 @@ class KeyBoard {
   }
 
   addDomElements() {
-    this.capsLock = document.querySelector('.CapsLock');
+    this.capsLock = document.querySelector('.capsLock');
     this.upperCaseKey = document.querySelectorAll('.off');
     this.lowerCaseKey = document.querySelectorAll('.on');
-    this.rightShift = document.querySelector('.ShiftRight');
-    this.leftShift = document.querySelector('.ShiftLeft');
+    this.rightShift = document.querySelector('.shiftRight');
+    this.leftShift = document.querySelector('.shiftLeft');
     this.rusKeys = document.querySelectorAll('.activeKeys');
     this.engKeys = document.querySelectorAll('.disableKeys');
   }
@@ -67,10 +66,11 @@ class KeyBoard {
   }
 
   addVirtualKeys() {
-    for (let i = 0; i < 64; i += 1) {
+    for (let i = 0; i < this.keyCode.length; i += 1) {
       const key = document.createElement('div');
+      const classNameKey = this.keyCode[i][0].toLowerCase() + this.keyCode[i].slice(1);
       key.classList.add('key');
-      key.classList.add(this.keyCode[i]);
+      key.classList.add(classNameKey);
       this.wrapper.append(key);
 
       const ruKey = document.createElement('div');
@@ -100,10 +100,6 @@ class KeyBoard {
       engKeyLower.classList.add('on');
       engKeyLower.innerHTML = this.engLowerCase[i];
       this.wrapper.lastChild.lastChild.append(engKeyLower);
-
-      if (i === 14 || i === 29 || i === 42 || i === 55) {
-        key.classList.add('float-none');
-      }
     }
   }
 
@@ -145,19 +141,13 @@ class KeyBoard {
 
   mouseClick(e) {
     const target = e.target.closest('.key');
-    if (target == null) {
-      return;
-    }
+    if (target === null) return;
     const targetKey = target.className.split(' ')[1];
     this.checkKey(targetKey);
     target.classList.add('active');
-    setTimeout(() => {
-      target.classList.remove('active');
-    }, 500);
+    setTimeout(() => target.classList.remove('active'), 500);
     const text = e.target.closest('.key').querySelector('.activeKeys').querySelector('.on').textContent;
-    if (text.length > 1) {
-      return;
-    }
+    if (text.length > 1) return;
     this.textArea.value += text;
   }
 
@@ -167,48 +157,35 @@ class KeyBoard {
       this.changeCase();
       return;
     }
-    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-      this.caseUpper();
-    }
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') this.caseUpper();
     this.checkKey(e.code);
-    const key = document.querySelector(`.${e.code}`);
-    if (key === null) {
-      return;
-    }
+    const pressedKey = e.code[0].toLowerCase() + e.code.slice(1);
+    const key = document.querySelector(`.${pressedKey}`);
+    if (key === null) return;
     key.classList.add('activeKeyBoard');
-    const text = document.querySelector(`.${e.code}`).querySelector('.activeKeys').querySelector('.on').textContent;
-    if (text.length > 1) {
-      return;
-    }
+    const text = key.querySelector('.activeKeys').querySelector('.on').textContent;
+    if (text.length > 1) return;
     this.textArea.value += text;
   }
 
   keyUp(e) {
-    if (e.code === 'CapsLock') {
-      return;
-    }
-    const key = document.querySelector(`.${e.code}`);
-
-    if (key === null) {
-      return;
-    }
-
+    if (e.code === 'CapsLock') return;
+    const pressedKey = e.code[0].toLowerCase() + e.code.slice(1);
+    const key = document.querySelector(`.${pressedKey}`);
+    if (key === null) return;
     key.classList.remove('activeKeyBoard');
     if (e.key === 'Shift') {
-      if (this.capsMode === true) {
-        return;
-      }
+      if (this.capsMode) return;
       this.caseLower(e);
     }
   }
 
   changeCase() {
-    if (this.capsMode === true) {
+    if (this.capsMode) {
       this.capsLock.style.backgroundColor = 'rgb(201, 201, 201)';
-
       this.capsMode = false;
       this.caseLower();
-    } else if (this.capsMode === false) {
+    } else {
       this.capsLock.style.backgroundColor = 'rgb(164, 164, 255)';
       this.capsMode = true;
       this.caseUpper();
@@ -231,9 +208,7 @@ class KeyBoard {
 
   deleteSymbolPrev() {
     const cursorNum = this.textArea.selectionStart;
-    if (cursorNum === 0) {
-      return;
-    }
+    if (cursorNum === 0) return;
     const string = this.textArea.value;
     this.textArea.value = string.slice(0, cursorNum - 1) + string.slice(cursorNum, string.length);
     this.textArea.selectionStart = cursorNum - 1;
@@ -242,9 +217,7 @@ class KeyBoard {
 
   deleteSymbolNext() {
     const cursorNum = this.textArea.selectionStart;
-    if (cursorNum === this.textArea.value.length) {
-      return;
-    }
+    if (cursorNum === this.textArea.value.length) return;
     const string = this.textArea.value;
     this.textArea.value = string.slice(0, cursorNum) + string.slice(cursorNum + 1, string.length);
     this.textArea.selectionStart = cursorNum;
@@ -257,9 +230,7 @@ class KeyBoard {
       this.textArea.selectionStart = cursor + 1;
       this.textArea.selectionEnd = cursor + 1;
     } else if (direction === 'ArrowLeft') {
-      if (cursor === 0) {
-        return;
-      }
+      if (cursor === 0) return;
       this.textArea.selectionStart = cursor - 1;
       this.textArea.selectionEnd = cursor - 1;
     } else if (direction === 'ArrowUp') {
